@@ -10,16 +10,17 @@ const getSum = () => {
     total += parseInt(priceEl.textContent);
   });
 
-  // Create new row
-  const table = document.querySelector("table");
-  const newRow = document.createElement("tr");
-  const newCell = document.createElement("td");
+  // Check if #ans already exists
+  let ansDiv = document.getElementById("ans");
 
-  newCell.colSpan = 2;
-  newCell.textContent = `Total Price: Rs ${total}`;
-  newRow.appendChild(newCell);
-  
-  table.appendChild(newRow);
+  if (!ansDiv) {
+    ansDiv = document.createElement("div");
+    ansDiv.id = "ans";
+    document.body.appendChild(ansDiv);
+  }
+
+  // Only show number inside #ans
+  ansDiv.textContent = total;
 };
 
 getSumBtn.addEventListener("click", getSum);
